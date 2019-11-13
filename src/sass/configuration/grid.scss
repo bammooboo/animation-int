@@ -1,0 +1,239 @@
+$breakpoints: (
+  mobile: 320px,
+  large-mobile: 375px,
+  tablet: 768px,
+  large-tablet: 1024px,
+  desktop: 1328px,
+  large-desktop: 1920px,
+  ultra-wide: 2560px
+);
+
+$tiny: "only screen and (max-width : #{map-get($breakpoints, mobile)})" !default;
+$small: "only screen and (min-width : #{map-get($breakpoints, large-mobile)})" !default;
+$medium: "only screen and (min-width : #{map-get($breakpoints, tablet)})" !default;
+$large: "only screen and (min-width : #{map-get($breakpoints, large-tablet)})" !default;
+$xlarge: "only screen and (min-width : #{map-get($breakpoints, desktop)})" !default;
+$wide: "only screen and (min-width : #{map-get($breakpoints, large-desktop)}) and (max-width : #{map-get($breakpoints, ultra-wide)})" !default;
+
+$num-cols: 12 !default;
+$gutter-width: 3rem !default;
+$top-margin: 1rem !default;
+$bottom-margin: 1rem !default;
+$container-max: map-get($breakpoints, ultra-wide);
+
+@mixin reset-offset {
+  left: auto;
+  margin-left: auto;
+  right: auto;
+}
+
+@mixin grid-classes($size, $i, $perc) {
+  &.offset-#{$size}#{$i} {
+    margin-left: $perc;
+  }
+
+  &.pull-#{$size}#{$i} {
+    right: $perc;
+  }
+
+  &.push-#{$size}#{$i} {
+    left: $perc;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $container-max;
+  padding: 0 calc(#{$gutter-width} / 2);
+  width: 100%;
+
+  @media #{$large} {
+    padding: 0 $gutter-width;
+  }
+}
+
+.col .row {
+  margin-left: (-1 * $gutter-width / 2);
+  margin-right: (-1 * $gutter-width / 2);
+}
+
+.section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  &.no-pad {
+    padding: 0;
+  }
+  &.no-pad-bot {
+    padding-bottom: 0;
+  }
+  &.no-pad-top {
+    padding-top: 0;
+  }
+}
+
+.row {
+  margin-bottom: $bottom-margin;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.no-gutter {
+    .col {
+      padding: 0;
+    }
+  }
+
+  &.no-margin {
+    margin: 0;
+  }
+
+  &.no-margin-bottom {
+    margin-bottom: 0;
+  }
+
+  &.no-margin-top {
+    margin-top: 0;
+  }
+
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+
+  .col {
+    box-sizing: border-box;
+    float: left;
+    min-height: 1px;
+    padding: 0 $gutter-width / 4;
+
+    @media #{$medium} {
+      padding: 0 $gutter-width / 3;
+    }
+
+    @media #{$large} {
+      padding: 0 $gutter-width / 2;
+    }
+
+    .no-gutter {
+      padding: 0;
+    }
+
+    &[class*=push-],
+    &[class*=pull-] {
+      position: relative;
+    }
+
+    $i: 1;
+
+    @while $i <= $num-cols {
+      $perc: unquote((100 / ($num-cols / $i)) + '%');
+
+      &.xs#{$i} {
+        @include reset-offset;
+        width: $perc;
+      }
+      $i: $i + 1;
+    }
+
+    $i: 1;
+
+    @while $i <= $num-cols {
+      $perc: unquote((100 / ($num-cols / $i)) + '%');
+      @include grid-classes('xs', $i, $perc);
+      $i: $i + 1;
+    }
+
+    @media #{$small} {
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+
+        &.s#{$i} {
+          @include reset-offset;
+          width: $perc;
+        }
+        $i: $i + 1;
+      }
+
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+        @include grid-classes('s', $i, $perc);
+        $i: $i + 1;
+      }
+    }
+
+    @media #{$medium} {
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+
+        &.m#{$i} {
+          @include reset-offset;
+          width: $perc;
+        }
+        $i: $i + 1;
+      }
+
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+        @include grid-classes('m', $i, $perc);
+        $i: $i + 1;
+      }
+    }
+
+    @media #{$large} {
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+
+        &.l#{$i} {
+          @include reset-offset;
+          width: $perc;
+        }
+        $i: $i + 1;
+      }
+
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+        @include grid-classes('l', $i, $perc);
+        $i: $i + 1;
+      }
+    }
+
+    @media #{$xlarge} {
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+
+        &.xl#{$i} {
+          @include reset-offset;
+          width: $perc;
+        }
+        $i: $i + 1;
+      }
+
+      $i: 1;
+
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + '%');
+        @include grid-classes('xl', $i, $perc);
+        $i: $i + 1;
+      }
+    }
+  }
+}
