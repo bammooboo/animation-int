@@ -65,7 +65,7 @@ export default () => {
     }, 0.1, '-=0.2')
     .to(svgSelectors.catThreePingsContainer, 0.06, {
       opacity: 0,
-      scale: 0,
+      scale: 0.5,
       transformOrigin: 'center',
     }, '+=0.2')
     .to(svgSelectors.catThreePingsContainer, 0.4, {
@@ -73,7 +73,7 @@ export default () => {
       opacity: 1,
       transformOrigin: 'center',
       scale: 1,
-    }, '+=0.28')
+    }, '+=0.26')
   }
 
   init();
