@@ -1,5 +1,6 @@
 export default () => {
   const svgSelectors = {
+    catThree: document.querySelector('.cat__three'),
     catThreeMouth: document.getElementById('cat-three-mouth'),
     catThreeBulb: document.getElementById('cat-three-bulb'),
     catThreePingsContainer: document.getElementById('cat-three-bulb-pings'),
@@ -16,7 +17,10 @@ export default () => {
     console.log('cat three', svgSelectors.catThreeMouth);
     const tlCatThree = new TimelineMax();
 
-    tlCatThree.fromTo(svgSelectors.catThreeMouth, 1.4, {
+    tlCatThree.to(svgSelectors.catThree, 0.1, {
+      opacity: 1,
+    })
+    .fromTo(svgSelectors.catThreeMouth, 1.4, {
       opacity: 0,
       scale: 0,
       transformOrigin: 'center',
@@ -58,7 +62,18 @@ export default () => {
     })
     .staggerTo(svgSelectors.catThreePings, 0.1, {
       opacity: 1,
-    }, 0.1, '-=0.2');
+    }, 0.1, '-=0.2')
+    .to(svgSelectors.catThreePingsContainer, 0.06, {
+      opacity: 0,
+      scale: 0,
+      transformOrigin: 'center',
+    }, '+=0.2')
+    .to(svgSelectors.catThreePingsContainer, 0.4, {
+      ease: Back.easeOut.config(0.8),
+      opacity: 1,
+      transformOrigin: 'center',
+      scale: 1,
+    }, '+=0.28')
   }
 
   init();

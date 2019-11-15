@@ -1150,9 +1150,10 @@ ul,
 .cat__container {
   padding: 6rem 0; }
 
-.cat__three .cat-three-ping {
+.cat__three {
   opacity: 0; }
-
-.cat__three #cat-three-mouth {
-  opacity: 0;
-  transform-origin: center; }
+  .cat__three .cat-three-ping {
+    opacity: 0; }
+  .cat__three #cat-three-mouth {
+    opacity: 0;
+    transform-origin: center; }
