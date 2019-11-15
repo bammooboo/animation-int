@@ -1,3 +1,5 @@
+import Animations from './js/Animations';
+
 document.addEventListener("DOMContentLoaded", function() {
-  console.log('hello');
+  Animations();
 });

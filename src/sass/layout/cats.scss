@@ -1,0 +1,16 @@
+.cat {
+  &__container {
+    padding: 6rem 0;
+  }
+
+  &__three {
+    .cat-three-ping {
+      opacity: 0;
+    }
+
+    #cat-three-mouth {
+      opacity: 0;
+      transform-origin: center;
+    }
+  }
+}
