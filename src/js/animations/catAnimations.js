@@ -1,5 +1,3 @@
-import { Signer } from "crypto";
-
 export default () => {
   const svgSelectors = {
     catTwo: document.querySelector('.cat__two'),
@@ -13,10 +11,15 @@ export default () => {
     catThreeEyes: document.querySelectorAll('.cat-three-eye'),
     catThreeLeftEar: document.getElementById('cat-three-left-ear'),
     catThreeRightEar: document.getElementById('cat-three-right-ear'),
+    catFour: document.querySelector('.cat__four'),
+    catFourDots: document.querySelectorAll('.cat-four-dot'),
+    catFourCat: document.getElementById('cat-four-cat'),
   }
+
   function init() {
     catTwoAnimations();
     catThreeAnimations();
+    catFourAnimations();
   }
 
   function catTwoAnimations() {
@@ -108,6 +111,33 @@ export default () => {
       transformOrigin: 'center',
       scale: 1,
     }, '+=0.26')
+  }
+
+  function catFourAnimations() {
+    console.log('cat four', svgSelectors.catFour);
+
+    const tlCatFour = new TimelineMax({repeat: -1});
+    const tlCatFourHover = new TimelineMax({repeat: -1, ease: Linear.easeNone});
+
+    tlCatFour.staggerTo(svgSelectors.catFourDots, 0.6, {
+      opacity: 1,
+      ease: Linear.easeNone,
+    }, 0.3)
+    .staggerTo(svgSelectors.catFourDots, 0.6, {
+      opacity: 0,
+      ease: Linear.easeNone,
+    }, 0.3);
+
+    tlCatFourHover.fromTo(svgSelectors.catFourCat, 0.7, {
+      y: 0
+    }, {
+      y: -10
+    })
+    .fromTo(svgSelectors.catFourCat, 0.7, {
+      y: -10
+    }, {
+      y: 0
+    });
   }
 
   init();

@@ -1160,3 +1160,6 @@ ul,
   .cat__three #cat-three-mouth {
     opacity: 0;
     transform-origin: center; }
+
+.cat__four .cat-four-dot {
+  opacity: 0; }

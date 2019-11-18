@@ -21,4 +21,10 @@
       transform-origin: center;
     }
   }
+
+  &__four {
+    .cat-four-dot {
+      opacity: 0;
+    }
+  }
 }
