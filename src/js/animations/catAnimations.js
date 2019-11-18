@@ -1,5 +1,11 @@
 export default () => {
   const svgSelectors = {
+    catOne: document.querySelector('.cat__one'),
+    catOneWeight: document.getElementById('cat-one-weight'),
+    catOneEyes: document.querySelectorAll('.cat-one-eye'),
+    catOneMouth: document.getElementById('cat-one-mouth'),
+    catOneDroplets: document.querySelectorAll('.cat-one-droplet'),
+    catOneCheeks: document.querySelectorAll('.cat-one-cheek'),
     catTwo: document.querySelector('.cat__two'),
     catTwoZs: document.querySelectorAll('.cat-two-z'),
     catTwoEar: document.getElementById('cat-two-ear'),
@@ -17,9 +23,31 @@ export default () => {
   }
 
   function init() {
+    catOneAnimations();
     catTwoAnimations();
     catThreeAnimations();
     catFourAnimations();
+  }
+
+  function catOneAnimations() {
+    console.log('cat one', svgSelectors.catOne);
+
+    const tlCatOne = new TimelineMax({repeat: -1, yoyo: true, ease: Linear.easeNone});
+
+    tlCatOne.fromTo(svgSelectors.catOneWeight, 2, {
+      rotation: 5,
+      transformOrigin: 'top left',
+    }, {
+      rotation: -5,
+      transformOrigin: 'top left',
+    })
+    .fromTo(svgSelectors.catOneMouth, 2, {
+      scaleY: 1,
+      transformOrigin: 'top',
+    }, {
+      scaleY: 1.4,
+      transformOrigin: 'top',
+    }, "-=2");
   }
 
   function catTwoAnimations() {
