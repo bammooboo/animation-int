@@ -34,20 +34,25 @@ export default () => {
 
     const tlCatOne = new TimelineMax({repeat: -1, yoyo: true, ease: Linear.easeNone});
 
-    tlCatOne.fromTo(svgSelectors.catOneWeight, 2, {
+    tlCatOne.fromTo(svgSelectors.catOneWeight, 1.4, {
       rotation: 5,
       transformOrigin: 'top left',
     }, {
       rotation: -5,
       transformOrigin: 'top left',
     })
-    .fromTo(svgSelectors.catOneMouth, 2, {
+    .fromTo(svgSelectors.catOneMouth, 1.4, {
       scaleY: 1,
       transformOrigin: 'top',
     }, {
       scaleY: 1.4,
       transformOrigin: 'top',
-    }, "-=2");
+    }, "-=1.4")
+    .fromTo(svgSelectors.catOneCheeks, 1.4, {
+      fill: "#FF91AB",
+    }, {
+      fill: "#F76D8E",
+    }, "-=1.4");
   }
 
   function catTwoAnimations() {
