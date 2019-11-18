@@ -3,6 +3,12 @@
     padding: 6rem 0;
   }
 
+  &__two {
+    .cat-two-z {
+      opacity: 0;
+    }
+  }
+
   &__three {
     opacity: 0;
 

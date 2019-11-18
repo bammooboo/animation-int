@@ -1,5 +1,10 @@
+import { Signer } from "crypto";
+
 export default () => {
   const svgSelectors = {
+    catTwo: document.querySelector('.cat__two'),
+    catTwoZs: document.querySelectorAll('.cat-two-z'),
+    catTwoEar: document.getElementById('cat-two-ear'),
     catThree: document.querySelector('.cat__three'),
     catThreeMouth: document.getElementById('cat-three-mouth'),
     catThreeBulb: document.getElementById('cat-three-bulb'),
@@ -10,11 +15,40 @@ export default () => {
     catThreeRightEar: document.getElementById('cat-three-right-ear'),
   }
   function init() {
+    catTwoAnimations();
     catThreeAnimations();
   }
 
+  function catTwoAnimations() {
+    console.log('cat two', svgSelectors.catTwo);
+
+    const tlCatTwo = new TimelineMax({repeat: -1});
+
+    tlCatTwo.staggerTo(svgSelectors.catTwoZs, 0.8, {
+      opacity: 1,
+      ease: Linear.easeNone,
+    }, 0.3)
+    .staggerTo(svgSelectors.catTwoZs, 0.8, {
+      opacity: 0,
+      ease: Linear.easeNone,
+    }, 0.3);
+
+    TweenMax.fromTo(svgSelectors.catTwoEar, 0.1, {
+      delay: 3,
+      rotation: 4,
+      transformOrigin: 'right bottom',
+    }, {
+      rotation: -4,
+      ease: RoughEase.ease,
+      repeat: -1,
+      repeatDelay: 6,
+      transformOrigin: 'right bottom',
+    });
+
+  }
+
   function catThreeAnimations() {
-    console.log('cat three', svgSelectors.catThreeMouth);
+    console.log('cat three', svgSelectors.catThree);
     const tlCatThree = new TimelineMax();
 
     tlCatThree.to(svgSelectors.catThree, 0.1, {
