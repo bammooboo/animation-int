@@ -1150,6 +1150,9 @@ ul,
 .cat__container {
   padding: 6rem 0; }
 
+.cat__one .cat-one-weight {
+  transform-origin: 0% 0%; }
+
 .cat__two .cat-two-z {
   opacity: 0; }
 
@@ -1158,8 +1161,7 @@ ul,
   .cat__three .cat-three-ping {
     opacity: 0; }
   .cat__three #cat-three-mouth {
-    opacity: 0;
-    transform-origin: center; }
+    opacity: 0; }
 
 .cat__four .cat-four-dot {
   opacity: 0; }

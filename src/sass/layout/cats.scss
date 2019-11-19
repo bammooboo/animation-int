@@ -3,6 +3,12 @@
     padding: 6rem 0;
   }
 
+  &__one {
+    .cat-one-weight {
+      transform-origin: 0% 0%;
+    }
+  }
+
   &__two {
     .cat-two-z {
       opacity: 0;
@@ -18,7 +24,6 @@
 
     #cat-three-mouth {
       opacity: 0;
-      transform-origin: center;
     }
   }
 

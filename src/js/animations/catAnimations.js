@@ -1,3 +1,13 @@
+import CSSPlugin from "../gsap/CSSPlugin";
+import CSSRulePlugin from "../gsap/CSSRulePlugin"
+import MorphSVGPlugin from "../gsap/MorphSVGPlugin";
+import { TimelineMax, TweenMax, Linear, RoughEase, Back }  from "../gsap/all";
+import { gsap } from '../gsap/all';
+
+// const plugins = [CSSPlugin, CSSRulePlugin, gsap];
+// const plugin = [MorphSVGPlugin];
+gsap.registerPlugin(MorphSVGPlugin, CSSPlugin, CSSRulePlugin);
+
 export default () => {
   const svgSelectors = {
     catOne: document.querySelector('.cat__one'),
@@ -50,39 +60,37 @@ export default () => {
     TweenMax.fromTo(svgSelectors.catOneDropletsLeft, 0.6, {
       autoAlpha: 1,
       scale: 0,
-      transformOrigin: 'top right',
+      transformOrigin: 'right',
     }, {
       autoAlpha: 0,
       scale: 1,
-      transformOrigin: 'top right',
+      transformOrigin: 'right',
       repeat: -1,
       repeatDelay: 2,
     });
 
     TweenMax.fromTo(svgSelectors.catOneDropletsRight, 0.6, {
       scale: 0,
-      transformOrigin: 'top left',
+      transformOrigin: 'left',
     }, {
       autoAlpha: 0,
       scale: 1,
-      transformOrigin: 'top left',
+      transformOrigin: 'left',
       repeat: -1,
       repeatDelay: 2,
     });
 
     tlCatOne.fromTo(svgSelectors.catOneWeight, 1.4, {
       rotation: 5,
-      transformOrigin: 'top left',
+      transformOrigin: 'left',
     }, {
       rotation: -5,
-      transformOrigin: 'top left',
+      transformOrigin: 'left',
     })
     .fromTo(svgSelectors.catOneMouth, 1.4, {
       scaleY: 1,
-      transformOrigin: 'top',
     }, {
       scaleY: 1.4,
-      transformOrigin: 'top',
     }, "-=1.4")
     .fromTo(svgSelectors.catOneCheeks, 1.4, {
       fill: "#FF91AB",
@@ -128,12 +136,10 @@ export default () => {
     })
     .fromTo(svgSelectors.catThreeMouth, 1.4, {
       opacity: 0,
-      scale: 0,
-      transformOrigin: 'center',
+      scaleY: 0,
     }, {
       opacity: 1,
-      scale: 1,
-      transformOrigin: 'center',
+      scaleY: 1,
     })
     .fromTo(svgSelectors.catThreeEyes, 1.4, {
       scaleX: 1,
@@ -146,17 +152,17 @@ export default () => {
     }, '-=1.4')
     .fromTo(svgSelectors.catThreeLeftEar, 1.4, {
       rotation: -10,
-      transformOrigin: 'bottom right',
+      transformOrigin: 'right',
     }, {
       rotation: 0,
-      transformOrigin: 'bottom right',
+      transformOrigin: 'right',
     }, '-=1.4')
     .fromTo(svgSelectors.catThreeRightEar, 1.4, {
       rotation: 10,
-      transformOrigin: 'bottom left',
+      transformOrigin: 'left',
     }, {
       rotation: 0,
-      transformOrigin: 'bottom left',
+      transformOrigin: 'left',
     }, '-=1.4')
     .fromTo(svgSelectors.catThreeBulb, 0.4, {
       ease: Back.easeOut.config(1.7),
@@ -179,7 +185,7 @@ export default () => {
       opacity: 1,
       transformOrigin: 'center',
       scale: 1,
-    }, '+=0.26')
+    }, '+=0.26');
   }
 
   function catFourAnimations() {
