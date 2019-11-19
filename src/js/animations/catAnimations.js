@@ -4,7 +4,8 @@ export default () => {
     catOneWeight: document.getElementById('cat-one-weight'),
     catOneEyes: document.querySelectorAll('.cat-one-eye'),
     catOneMouth: document.getElementById('cat-one-mouth'),
-    catOneDroplets: document.querySelectorAll('.cat-one-droplet'),
+    catOneDropletsLeft: document.querySelectorAll('.cat-one-droplet-left'),
+    catOneDropletsRight: document.querySelectorAll('.cat-one-droplet-right'),
     catOneCheeks: document.querySelectorAll('.cat-one-cheek'),
     catTwo: document.querySelector('.cat__two'),
     catTwoZs: document.querySelectorAll('.cat-two-z'),
@@ -33,6 +34,41 @@ export default () => {
     console.log('cat one', svgSelectors.catOne);
 
     const tlCatOne = new TimelineMax({repeat: -1, yoyo: true, ease: Linear.easeNone});
+    
+    TweenMax.fromTo(svgSelectors.catOneEyes, 0.1, {
+      scaleX: 1,
+      scaleY: 0.05,
+      transformOrigin: 'center',
+    }, {
+      scaleX: 1,
+      scaleY: 1,
+      transformOrigin: 'center',
+      repeat: -1,
+      repeatDelay: 4,
+    });
+
+    TweenMax.fromTo(svgSelectors.catOneDropletsLeft, 0.6, {
+      autoAlpha: 1,
+      scale: 0,
+      transformOrigin: 'top right',
+    }, {
+      autoAlpha: 0,
+      scale: 1,
+      transformOrigin: 'top right',
+      repeat: -1,
+      repeatDelay: 2,
+    });
+
+    TweenMax.fromTo(svgSelectors.catOneDropletsRight, 0.6, {
+      scale: 0,
+      transformOrigin: 'top left',
+    }, {
+      autoAlpha: 0,
+      scale: 1,
+      transformOrigin: 'top left',
+      repeat: -1,
+      repeatDelay: 2,
+    });
 
     tlCatOne.fromTo(svgSelectors.catOneWeight, 1.4, {
       rotation: 5,
