@@ -1165,3 +1165,7 @@ ul,
 
 .cat__four .cat-four-dot {
   opacity: 0; }
+
+#path-one {
+  stroke-width: 3;
+  stroke: gray; }

@@ -1,12 +1,13 @@
 import CSSPlugin from "../gsap/CSSPlugin";
 import CSSRulePlugin from "../gsap/CSSRulePlugin"
 import MorphSVGPlugin from "../gsap/MorphSVGPlugin";
-import { TimelineMax, TweenMax, Linear, RoughEase, Back }  from "../gsap/all";
+import MotionPathPlugin from "../gsap/MotionPathPlugin";
+import { Linear, RoughEase, Back }  from "../gsap/all";
 import { gsap } from '../gsap/all';
 
 // const plugins = [CSSPlugin, CSSRulePlugin, gsap];
 // const plugin = [MorphSVGPlugin];
-gsap.registerPlugin(MorphSVGPlugin, CSSPlugin, CSSRulePlugin);
+gsap.registerPlugin(MorphSVGPlugin, MotionPathPlugin, CSSPlugin, CSSRulePlugin);
 
 export default () => {
   const svgSelectors = {
@@ -34,18 +35,39 @@ export default () => {
   }
 
   function init() {
+    balloon();
     catOneAnimations();
     catTwoAnimations();
     catThreeAnimations();
     catFourAnimations();
   }
 
+  function balloon() {
+    gsap.set('#balloon', {
+      xPercent: -50,
+      yPercent: -50,
+      transformOrigin: "50% 50%"
+    });
+    gsap.to("#balloon", {
+      duration: 5, 
+      repeat: 12,
+      repeatDelay: 3,
+      yoyo: true,
+      ease: "power1.inOut",
+      motionPath:{
+        path: "#balloon-path",
+        align: "#balloon-path",
+        autoRotate: 90,
+      }
+    });
+  }
+
   function catOneAnimations() {
     console.log('cat one', svgSelectors.catOne);
 
-    const tlCatOne = new TimelineMax({repeat: -1, yoyo: true, ease: Linear.easeNone});
+    const tlCatOne = gsap.timeline({repeat: -1, yoyo: true, ease: Linear.easeNone});
     
-    TweenMax.fromTo(svgSelectors.catOneEyes, 0.1, {
+    gsap.fromTo(svgSelectors.catOneEyes, 0.1, {
       scaleX: 1,
       scaleY: 0.05,
       transformOrigin: 'center',
@@ -57,7 +79,7 @@ export default () => {
       repeatDelay: 4,
     });
 
-    TweenMax.fromTo(svgSelectors.catOneDropletsLeft, 0.6, {
+    gsap.fromTo(svgSelectors.catOneDropletsLeft, 0.6, {
       autoAlpha: 1,
       scale: 0,
       transformOrigin: 'right',
@@ -69,7 +91,7 @@ export default () => {
       repeatDelay: 2,
     });
 
-    TweenMax.fromTo(svgSelectors.catOneDropletsRight, 0.6, {
+    gsap.fromTo(svgSelectors.catOneDropletsRight, 0.6, {
       scale: 0,
       transformOrigin: 'left',
     }, {
@@ -102,7 +124,7 @@ export default () => {
   function catTwoAnimations() {
     console.log('cat two', svgSelectors.catTwo);
 
-    const tlCatTwo = new TimelineMax({repeat: -1});
+    const tlCatTwo = gsap.timeline({repeat: -1});
 
     tlCatTwo.staggerTo(svgSelectors.catTwoZs, 0.8, {
       opacity: 1,
@@ -113,7 +135,7 @@ export default () => {
       ease: Linear.easeNone,
     }, 0.3);
 
-    TweenMax.fromTo(svgSelectors.catTwoEar, 0.1, {
+    gsap.fromTo(svgSelectors.catTwoEar, 0.1, {
       delay: 3,
       rotation: 4,
       transformOrigin: 'right bottom',
@@ -129,7 +151,7 @@ export default () => {
 
   function catThreeAnimations() {
     console.log('cat three', svgSelectors.catThree);
-    const tlCatThree = new TimelineMax();
+    const tlCatThree = gsap.timeline();
 
     tlCatThree.to(svgSelectors.catThree, 0.1, {
       opacity: 1,
@@ -191,8 +213,8 @@ export default () => {
   function catFourAnimations() {
     console.log('cat four', svgSelectors.catFour);
 
-    const tlCatFour = new TimelineMax({repeat: -1});
-    const tlCatFourHover = new TimelineMax({repeat: -1, ease: Linear.easeNone});
+    const tlCatFour = gsap.timeline({repeat: -1});
+    const tlCatFourHover = gsap.timeline({repeat: -1, ease: Linear.easeNone});
 
     tlCatFour.staggerTo(svgSelectors.catFourDots, 0.6, {
       opacity: 1,
