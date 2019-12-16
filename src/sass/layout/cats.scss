@@ -1,6 +1,7 @@
 .cat {
   &__container {
-    padding: 6rem 0;
+    display: block;
+    padding: 4rem 0;
   }
 
   &__one {
@@ -37,4 +38,85 @@
 #path-one {
   stroke-width: 3;
   stroke: gray;
+}
+
+.art-deco {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.container-art-deco {
+  background-color: #012d3b;
+}
+
+#deco-one {
+  stroke: lightblue !important;
+}
+
+#deco-two {
+  stroke: red !important;
+  display: none;
+}
+
+#deco-three {
+  stroke: green !important;
+}
+
+#deco-four {
+  stroke: white !important;
+}
+
+.snowflake-container {
+  background-color: #11001c;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.snowflake {
+  padding: 100px;
+  width: 700px;
+  position: absolute;
+  opacity: 0.3;
+
+  &.snowflake-1 {
+    bottom: -205px;
+    right: -205px;
+  }
+
+  &.snowflake-2 {
+    top: -205px;
+    left: -205px;
+  }
+
+  polyline {
+    stroke: #faf1e8 !important;
+    stroke-width: 2px !important;
+  }
+}
+
+.snowflake-text {
+  opacity: 0.3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+}
+
+.rainbow {
+  width: 900px;
+}
+
+#cloud-sad-smile,
+.cloud-sad-eye-right,
+.cloud-sad-eye-left,
+#cloud-happy-mouth-open,
+.cloud-smiling-eye {
+  visibility: hidden;
+}
+
+.cloud-sad-left-tear,
+.cloud-sad-right-tear,
+.cloud-cheek {
+  opacity: 0;
 }
