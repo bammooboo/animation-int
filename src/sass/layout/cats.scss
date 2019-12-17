@@ -88,7 +88,8 @@
     left: -205px;
   }
 
-  polyline {
+  polyline,
+  line {
     stroke: #faf1e8 !important;
     stroke-width: 2px !important;
   }
@@ -103,8 +104,16 @@
   width: 800px;
 }
 
+.rainbow-container {
+  background-color: #cdf2f2;
+}
+
 .rainbow {
   width: 900px;
+}
+
+.rainbow-sparkles {
+  opacity: 0;
 }
 
 #cloud-sad-smile,

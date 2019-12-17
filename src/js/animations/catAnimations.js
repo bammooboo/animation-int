@@ -61,16 +61,21 @@ export default () => {
     cloudSadRightTear: document.querySelectorAll('.cloud-sad-right-tear'),
     cloudSadLeftTear: document.querySelectorAll('.cloud-sad-left-tear'),
     cloudSadBody: document.getElementById('cloud-sad-body'),
+    cloudSadBodyLeft: document.getElementById('cloud-sad-body-left'),
+    cloudSadBodyRight: document.getElementById('cloud-sad-body-right'),
     cloudFace: document.querySelectorAll('.cloud-face'),
     cloudCheeks: document.querySelectorAll('.cloud-cheek'),
     cloudSadSmilingLeftEye: document.querySelector('.cloud-sad-left-smiling-eye'),
     cloudSadSmilingRightEye: document.querySelector('.cloud-sad-right-smiling-eye'),
+    cloudHappyEye: document.querySelectorAll('.cloud-happy-eye'),
     cloudHappyLeftEye: document.querySelector('.cloud-happy-left-eye'),
     cloudHappyRightEye: document.querySelector('.cloud-happy-right-eye'),
     cloudHappySmilingLeftEye: document.querySelector('.cloud-happy-left-smiling-eye'),
     cloudHappySmilingRightEye: document.querySelector('.cloud-happy-right-smiling-eye'),
     cloudHappyMouth: document.querySelector('.cloud-happy-mouth'),
-    cloudHappyMouthOpen: document.getElementById('cloud-happy-mouth-open')
+    cloudHappyMouthOpen: document.getElementById('cloud-happy-mouth-open'),
+    rainbowSparkles: document.querySelectorAll('.rainbow-sparkles'),
+    cloudHappy: document.getElementById('cloud-happy')
   }
 
   function init() {
@@ -105,9 +110,15 @@ export default () => {
     .to(svgSelectors.cloudHappyFace, 2, {
       x: 12,
     }, "-=6.6")
-    .to(svgSelectors.cloudHappyMouth, 1, {
+    .to(svgSelectors.cloudHappyMouth, 0.5, {
       morphSVG: svgSelectors.cloudHappyMouthOpen
     }, "-=4.6")
+    .add(() => {
+      startRainbow();
+    },"-=3")
+    .set(svgSelectors.rainbowLine, {
+      opacity: 1
+    },'-=1.7')
     .to(svgSelectors.rainbowLine, 1, {
       drawSVG: '0% 100%',
       ease: Linear.easeNone
@@ -127,6 +138,12 @@ export default () => {
     .to(svgSelectors.cloudSadBody, 1, {
       fill: "#f2f2f2"
     }, "-=1")
+    .to(svgSelectors.cloudSadBodyLeft, 1, {
+      fill: "#fff"
+    }, "-=1")
+    .to(svgSelectors.cloudSadBodyRight, 1, {
+      fill: "#9fd7ff"
+    }, "-=1")
     .to(svgSelectors.cloudHappyMouth, 1, {
       morphSVG: svgSelectors.cloudHappyMouth
     }, "-=1")
@@ -138,7 +155,69 @@ export default () => {
     })
     .add(() => {
       smilingEyes();
+    })
+    .add(() => {
+      rainbowSparkles();
     });
+  }
+
+  function rainbowSparkles() {
+    let rainbowSparklesTl = gsap.timeline({repeat: -1, ease: Linear.easeNone, yoyo: true});
+
+    gsap.to(svgSelectors.rainbowSparkles, 1, {
+      transformOrigin: '50% 50%',
+      rotation: 360,
+      repeat: -1,
+      ease: Linear.easeNone,
+    });
+
+    rainbowSparklesTl.staggerTo(svgSelectors.rainbowSparkles, 0.3, {
+      autoAlpha: 1,
+    }, 0.15);
+  }
+
+  function startRainbow() {
+    let rainbowBlinkTl = gsap.timeline();
+
+    rainbowBlinkTl.to(svgSelectors.cloudHappyEye, 0.4, {
+      scaleY: 0.2,
+      scaleX: 1,
+      transformOrigin: '50% 50%',
+    })
+    .to(svgSelectors.cloudHappyMouth, 0.4, {
+      scaleY: 0.2,
+      scaleX: 1,
+      transformOrigin: '50% 50%',
+    }, "-=0.4")
+    .fromTo(svgSelectors.cloudHappy, 0.1, {
+      x: -0.5
+    }, {
+      x: 0.5,
+      ease: RoughEase.ease,
+      repeat: 12
+    }, "-=0.4")
+    .to(svgSelectors.cloudHappyFace, 0.1, {
+      y: -4,
+    })
+    .to(svgSelectors.cloudHappy, 0.1, {
+      y: -4
+    }, "-=0.1")
+    .to(svgSelectors.cloudHappyFace, 0.1, {
+      y: 0,
+    })
+    .to(svgSelectors.cloudHappy, 0.1, {
+      y: 0
+    }, "-=0.1")
+    .to(svgSelectors.cloudHappyEye, 0.2, {
+      scaleY: 1,
+      scaleX: 1,
+      transformOrigin: '50% 50%',
+    }, "-=0.1")
+    .to(svgSelectors.cloudHappyMouth, 0.2, {
+      scaleY: 1,
+      scaleX: 1,
+      transformOrigin: '50% 50%',
+    }, "-=0.1");
   }
 
   function smilingEyes() {

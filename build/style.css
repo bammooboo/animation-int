@@ -1207,7 +1207,8 @@ ul,
   .snowflake.snowflake-2 {
     top: -205px;
     left: -205px; }
-  .snowflake polyline {
+  .snowflake polyline,
+  .snowflake line {
     stroke: #faf1e8 !important;
     stroke-width: 2px !important; }
 
@@ -1219,8 +1220,14 @@ ul,
   transform: translate(-50%, -50%);
   width: 800px; }
 
+.rainbow-container {
+  background-color: #cdf2f2; }
+
 .rainbow {
   width: 900px; }
+
+.rainbow-sparkles {
+  opacity: 0; }
 
 #cloud-sad-smile,
 .cloud-sad-eye-right,
