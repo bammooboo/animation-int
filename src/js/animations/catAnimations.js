@@ -107,8 +107,8 @@ export default () => {
       autoAlpha: 1,
       repeat: 5
     }, 0.2, "-=9.6")
-    .to(svgSelectors.cloudHappyFace, 2, {
-      x: 12,
+    .add(() => {
+      moveFace();
     }, "-=6.6")
     .to(svgSelectors.cloudHappyMouth, 0.5, {
       morphSVG: svgSelectors.cloudHappyMouthOpen
@@ -158,6 +158,23 @@ export default () => {
     })
     .add(() => {
       rainbowSparkles();
+    });
+  }
+
+  function moveFace() {
+    let faceMoveTl = gsap.timeline();
+
+    faceMoveTl.to(svgSelectors.cloudHappyFace, 0.9, {
+      x: 12,
+      ease: 'power1.out'
+    })
+    .to(svgSelectors.cloudHappyFace, 0.9, {
+      x: 0,
+      ease: 'power1.in'
+    })
+    .to(svgSelectors.cloudHappyFace, 0.15, {
+      x: 12,
+      ease: "back.out(1.4)"
     });
   }
 
