@@ -92,6 +92,48 @@ export default () => {
     catFiveAnimations();
   }
 
+  let cursorX = 0;
+  let cursorY = 0;
+  let offsetX = 0;
+  let offsetY = 0;
+  let depthXY = 0;
+  let square = document.querySelector('.square');
+  let cloudBits = document.querySelectorAll('.cloud-piece');
+  let background = document.querySelector('.square-container');
+  let darkCloud = document.querySelector('.dark-cloud');
+
+  document.addEventListener('mousemove', followMouse);
+
+  function followMouse(event) {
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    depthXY = 0.3;
+    offsetX = ((cursorX * depthXY) / 8);
+    offsetY = ((cursorY * depthXY) / 8);
+    square.style.transform = 'translate3d('+offsetX+'px,'+offsetY+'px,0px)';
+
+
+    // darkCloud.style.transform = 'translate('+(cursorX)+'px,'+(cursorY)+'px)';
+    darkCloud.style.left = cursorX+'px';
+    darkCloud.style.top = cursorY+'px';
+
+    // if(cursorX >= (window.innerWidth/2)) {
+    //   console.log('over half');
+    //   background.style.backgroundColor = 'pink';
+    // } else {
+    //   background.style.backgroundColor = 'lightblue';
+    // }
+
+    cloudBits.forEach(function(cloud) {
+      depthXY = 0.3;
+      offsetX = ((cursorX * depthXY) / 16);
+      offsetY = ((cursorY * depthXY) / 16);
+      cloud.style.transform = 'translate3d('+offsetX+'px,'+offsetY+'px,0px)';
+      
+    })
+  }
+  
+
   function rainbow() {
     let rainbowTl = gsap.timeline({delay: 4});
 

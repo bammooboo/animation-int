@@ -129,3 +129,28 @@
 .cloud-cheek {
   opacity: 0;
 }
+
+.square-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 800px;
+  position: relative;
+}
+
+.square {
+  background-color: navy;
+  height: 200px;
+  width: 200px;
+}
+
+.cloud {
+  height: 300px;
+  width: 300px;
+}
+
+.dark-cloud {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+}
