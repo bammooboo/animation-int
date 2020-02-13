@@ -183,8 +183,14 @@
   }
 }
 
+$primary: #140032;
+
+:root {
+  --primary: #{$primary};
+}
+
 .wavey-container {
-  background-color: #140032;
+  background-color: var(--primary);
   overflow: hidden;
   margin: 0;
   perspective: 1000px;
@@ -242,5 +248,29 @@
     // transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
     transform: rotateZ(360deg);
   }
-  }
+}
+
+.large-container {
+  height: auto;
+}
+
+.parallax-container {
+  max-width: 960px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  font-size: 24px;
+  padding: 25px;
+}
+
+.parallax {
+  background: url('../../assets/image-one.jpg') no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 500px;
+}
+
+.parallax-window {
+  min-height: 500px;
+  background: transparent;
+  z-index: 99;
 }
